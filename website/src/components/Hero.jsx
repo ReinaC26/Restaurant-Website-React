@@ -3,16 +3,19 @@ import React from 'react';
 function Hero() {
   return (
     <section
-      className="relative w-full h-[90vh] flex justify-center items-center text-center text-white"
-      style={{ backgroundImage: "url('main.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+      className="relative w-full h-[90vh] flex justify-center items-center text-center"
+      style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('main.jpg')`, // Added gradient overlay
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center' 
+      }}
     >
-      <div className="absolute inset-0 bg-black/40"></div>
-      <div className="relative z-10 max-w-2xl p-5">
-        <h1 className="text-6xl mb-5 tracking-wide">Between the Bites</h1>
-        <p className="text-xl mb-8">Enjoy the delicious moments, any time of day.</p>
+      <div className="relative z-10 max-w-3xl p-5 text-[white]">
+        <h1 className="text-[70px] md:text-8xl lg:text-9xl mb-[2px] tracking-tight font-extrabold">Between the Bites</h1>
+        <p className="text-[20px] md:text-2xl mb-[25px] font-medium">Enjoy the delicious moments, any time of day.</p>
         <a
           href="/menu"
-          className="inline-block px-7 py-3 bg-[#f4a261] rounded-lg font-bold hover:bg-[#e76f51] transition transform hover:scale-105"
+          className="inline-block text-[white] no-underline p-[10px] bg-[#f4a261] rounded-[5px] font-bold hover:bg-[#e76f51] transition transform hover:scale-105"
         >
           View Our Menu
         </a>

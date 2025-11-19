@@ -19,62 +19,84 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Determine if navbar should be transparent (only on home page when not scrolled)
+  const isHomePage = location.pathname === "/";
+  const isTransparent = isHomePage && !scrolled;
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full h-16 flex justify-between items-center px-6 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#fffaf3] shadow-md" : "bg-transparent"
+        isTransparent ? "bg-transparent" : "bg-[#fffaf3] shadow-md"
       }`}
     >
-      <div className={`text-2xl font-bold ${scrolled ? "text-black" : "text-black"}`}>
+      <div 
+        className={`text-[25px] font-bold transition-colors px-[20px] ${
+          isTransparent ? "text-[white]" : "text-[black]"
+        }`}
+        style={{ fontFamily: "'Inria Serif', serif" }}
+      >
         Between the Bites
       </div>
 
-        {/* Desktop Links */}
-        <ul className="md:flex flex-col gap-4 items-start text-black">
+      {/* Desktop Links */}
+      <ul className="flex flex-row gap-[45px] px-[20px] items-center list-none">
         <li>
-            <Link
+          <Link
             to="/"
-            className={`hover:underline ${location.pathname === "/" ? "underline" : ""}`}
-            >
+            className={`hover:underline hover:underline-offset-4 transition-colors ${
+              isTransparent ? "text-[white]" : "text-[black]"
+            } ${location.pathname === "/" ? "underline underline-offset-4" : ""}`}
+          >
             Home
-            </Link>
+          </Link>
         </li>
         <li>
-            <Link
+          <Link
             to="/menu"
-            className={`hover:underline ${location.pathname === "/menu" ? "underline" : ""}`}
-            >
+            className={`hover:underline hover:underline-offset-4 transition-colors ${
+              isTransparent ? "text-[white]" : "text-[black]"
+            } ${location.pathname === "/menu" ? "underline underline-offset-4" : ""}`}
+          >
             Menu
-            </Link>
+          </Link>
         </li>
         <li>
-            <Link
+          <Link
             to="/about"
-            className={`hover:underline ${location.pathname === "/about" ? "underline" : ""}`}
-            >
+            className={`hover:underline hover:underline-offset-4 transition-colors ${
+              isTransparent ? "text-[white]" : "text-[black]"
+            } ${location.pathname === "/about" ? "underline underline-offset-4" : ""}`}
+          >
             About
-            </Link>
+          </Link>
         </li>
         <li>
-            <Link
+          <Link
             to="/contact"
-            className={`hover:underline ${location.pathname === "/contact" ? "underline" : ""}`}
-            >
+            className={`hover:underline hover:underline-offset-4 transition-colors ${
+              isTransparent ? "text-[white]" : "text-[black]"
+            } ${location.pathname === "/contact" ? "underline underline-offset-4" : ""}`}
+          >
             Contact
-            </Link>
+          </Link>
         </li>
         <li className="flex items-center">
-        <Link to="/shopping-cart">
-            <img src="/public/cart2.png" alt="Cart" className="w-10 h-10 object-contain" />
-        </Link>
+          <Link to="/shopping-cart" className="block">
+            <img 
+              src={isTransparent ? "/cart1.png" : "/cart2.png"} 
+              alt="Cart" 
+              className="w-[20px] h-[20px] object-contain" 
+            />
+          </Link>
         </li>
-        </ul>
-
+      </ul>
 
       {/* Hamburger for Mobile */}
       {isMobile && (
         <button
-          className={`text-3xl focus:outline-none ${scrolled ? "text-black" : "text-black"}`}
+          className={`text-3xl focus:outline-none transition-colors ${
+            isTransparent ? "text-white" : "text-black"
+          }`}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           ☰
@@ -83,22 +105,46 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <ul className="absolute top-16 right-0 w-48 bg-[#fffaf3] flex flex-col gap-4 p-4 rounded-b-lg shadow-lg md:hidden">
+        <ul className="absolute top-16 right-0 w-48 bg-[#fffaf3] flex flex-col gap-4 p-4 rounded-b-lg shadow-lg text-black">
           <li>
-            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link 
+              to="/" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/" ? "underline" : ""}`}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
+            <Link 
+              to="/menu" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/menu" ? "underline" : ""}`}
+            >
+              Menu
+            </Link>
           </li>
           <li>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link 
+              to="/about" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/about" ? "underline" : ""}`}
+            >
+              About
+            </Link>
           </li>
           <li>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+            <Link 
+              to="/contact" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/contact" ? "underline" : ""}`}
+            >
+              Contact
+            </Link>
           </li>
           <li>
             <Link to="/shopping-cart" onClick={() => setMenuOpen(false)}>
-              <img src={cartIcon2} alt="Cart" className="w-5 h-5" />
+              <img src="/cart2.png" alt="Cart" className="w-4 h-4" />
             </Link>
           </li>
         </ul>

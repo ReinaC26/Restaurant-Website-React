@@ -19,9 +19,9 @@ function GallerySlider() {
   const prevSlide = () => setCurrent((current - 1 + length) % length);
 
   return (
-    <section className="py-16 text-center">
+    <section className="py-[30px] text-center">
       <h2 className="text-4xl text-[#e76f51] font-serif mb-8">Gallery</h2>
-      <div className="relative w-11/12 max-w-[1000px] mx-auto overflow-hidden rounded-xl bg-[#feecd8] p-8 shadow-lg">
+      <div className="relative w-11/12 max-w-[1000px] mx-auto overflow-hidden rounded-[10px] bg-[#feecd8] p-8 shadow-lg">
         <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${current * 100}%)` }}>
           {images.map((img, index) => (
             <div key={index} className="min-w-full flex justify-center px-2">

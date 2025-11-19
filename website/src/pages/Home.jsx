@@ -54,7 +54,7 @@ function Home() {
 
   return (
     <>
-      <Navbar scrolled={scrolled} cartIcon={cartIcon} />
+      <Navbar/>
       <main>
         <Hero />
         <GallerySlider ref={sliderRef} prev={prevSlide} next={nextSlide} />
