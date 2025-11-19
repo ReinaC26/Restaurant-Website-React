@@ -20,10 +20,10 @@ function About() {
     return (
         <>
         <Navbar />
-        <main className="pt-20 bg-[#fffaf3] flex flex-col items-center gap-10 px-6 md:px-16">
-            <section className="story-section flex flex-col md:flex-row items-center gap-10 md:gap-20">
-            <div className="story-content max-w-xl text-center md:text-left">
-                <h1 className="text-4xl md:text-5xl text-[#e76f51] mb-6">Our Story</h1>
+        <main className="pt-[50px] bg-[#fffaf3] flex flex-col items-center gap-10 px-[20vw] md:px-16">
+            <section className="story-section flex flex-col md:flex-row items-center gap-[6vh]">
+            <div className="story-content max-w-xl text-center md:text-left text-[20px]">
+                <h1 className="text-[50px] md:text-5xl text-[#e76f51] mb-6">Our Story</h1>
                 <p className="text-gray-700 mb-4">
                 <strong>Between the Bites</strong> was born from a love of gathering around the table where time slows down and conversation flows. 
                 Here, every dish is an invitation to pause for a moment to enjoy your life.
@@ -40,9 +40,9 @@ function About() {
             </div>
             <div className="story-image">
                 <img
-                src="/images/logo.png"
+                src="/logo.png"
                 alt="logo"
-                className="w-72 md:w-96 max-w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-500"
+                className="mb-[10vh] w-[70%] max-w-[700px] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-500 block mx-auto"
                 />
             </div>
             </section>
