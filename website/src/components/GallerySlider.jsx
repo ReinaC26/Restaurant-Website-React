@@ -20,28 +20,28 @@ function GallerySlider() {
 
   return (
     <section className="py-[30px] text-center">
-      <h2 className="text-4xl text-[#e76f51] font-serif mb-8">Gallery</h2>
-      <div className="relative w-11/12 max-w-[1000px] mx-auto overflow-hidden rounded-[10px] bg-[#feecd8] p-8 shadow-lg">
+      <h2 className="text-[40px] text-[#e76f51] font-serif mb-8">Gallery</h2>
+      <div className="relative h-[400px] w-11/12 max-w-[1000px] mx-auto overflow-hidden rounded-[10px] bg-[#feecd8] p-8 shadow-lg">
         <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${current * 100}%)` }}>
           {images.map((img, index) => (
             <div key={index} className="min-w-full flex justify-center px-2">
               <img
                 src={`${img}`}
                 alt={img}
-                className="w-3/5 h-[350px] object-cover rounded-lg shadow-md hover:scale-105 transition-transform"
+                className="w-3/5 h-[350px] object-cover rounded-[10px] mt-[25px] shadow-md hover:scale-105 transition-transform"
               />
             </div>
           ))}
         </div>
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-5 -translate-y-1/2 bg-[#ff9f68]/90 text-white p-3 rounded-full text-2xl hover:scale-110"
+          className="absolute top-1/2 left-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] hover:scale-110"
         >
           &#10094;
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-5 -translate-y-1/2 bg-[#ff9f68]/90 text-white p-3 rounded-full text-2xl hover:scale-110"
+          className="absolute top-1/2 right-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] hover:scale-110"
         >
           &#10095;
         </button>

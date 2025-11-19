@@ -142,29 +142,29 @@ function Menu() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 bg-[#fffaf3] font-serif text-center">
-        <h1 className="text-4xl md:text-5xl text-[#e76f51] my-10">Our Menu</h1>
+      <main className="pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
+        <h1 className="text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]">Our Menu</h1>
 
         {menuItems.map((category, idx) => (
           <section key={idx} className="mb-12">
-            <h2 className="text-3xl md:text-4xl text-[#3b3b3b] my-5">{category.category}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12">
+            <h2 className="text-[35px] md:text-4xl text-[#3b3b3b] my-5 ">{category.category}</h2>
+            <div className="grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12">
               {category.items.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-[300px] shadow-lg p-6 relative hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+                  className="text-left bg-[white] rounded-[15px] shadow-[1px_2px_5px_rgba(0,0,0,0.2)] p-[20px] py-[30px] relative hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-[150px] h-[150px] object-cover rounded-md mb-4"
+                    className="w-[150px] h-[150px] object-cover rounded-[15px] mb-4"
                   />
                   <h3 className="text-xl font-semibold text-[#3b3b3b] mb-2">{item.name}</h3>
                   <p className="text-gray-600 mb-4">{item.description}</p>
-                  <span className="text-[#e76f51] font-bold text-lg bottom-[4px]">${item.price}</span>
+                  <span className="text-[#e76f51] font-bold text-[20px]">${item.price}</span>
                   <button
                     onClick={() => addToCart(item)}
-                    className="absolute bottom-[4px] right-4 bg-yellow-500 hover:bg-yellow-400 text-white rounded-full px-4 py-2 font-semibold shadow-md transition-all duration-200"
+                    className="absolute right-[25px] bg-[#f8b400] hover:bg-[#ffca3a] text-[white] rounded-full px-[20px] py-[12px] mb-[2px] font-semibold shadow-[1px_2px_5px_rgba(0,0,0,0.2)] transition-all duration-200 border-[0px]"
                   >
                     Add to Cart
                   </button>
