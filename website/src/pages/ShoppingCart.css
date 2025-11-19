@@ -48,12 +48,13 @@
     .cart-total {
       flex-direction: column !important;
       align-items: center !important;
-      gap: 1rem !important;
-      margin-top: 1.5rem !important;
+      gap: 0.5rem !important;
+      margin-top: 5px !important;
     }
   
     .cart-total-amount {
       font-size: 1.5rem !important;
+      right: auto !important;
     }
   
     .checkout-btn {
@@ -61,6 +62,6 @@
       max-width: 300px !important;
       padding: 1rem !important;
       font-size: 1rem !important;
-      margin-left: 5vw !important;
+      margin-left: 10vw !important;
     }
 }

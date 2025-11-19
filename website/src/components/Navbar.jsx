@@ -84,35 +84,43 @@ function Navbar() {
         </li>
       </ul>
 
-      <ul className="desktop-menu hidden md:flex flex-row gap-[45px] px-[20px] items-center list-none">
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-                <Link to="/about">About</Link>
-            </li>
-            <li>
-                <Link to="/contact">Contact</Link>
-            </li>
-            <li className="flex items-center">
-                <Link to="/shopping-cart">
-                <img src={isTransparent ? "/cart1.png" : "/cart2.png"} alt="Cart" className="w-[20px] h-[20px]" />
-                </Link>
-            </li>
-        </ul>
-
-        {/* Mobile */}
-        <div className="mobile-section flex md:hidden items-center gap-4">
-        <Link to="/shopping-cart">
-            <img src={isTransparent ? "/cart1.png" : "/cart2.png"} alt="Cart" className="w-[20px] h-[20px]" />
+        {/* Mobile: Cart and Hamburger */}
+        <div className="mobile-section md:hidden flex items-center gap-4">
+        <Link to="/shopping-cart" className="block z-50">
+            <img 
+            src={isTransparent ? "/cart1.png" : "/cart2.png"} 
+            alt="Cart" 
+            className="w-[20px] h-[20px] object-contain" 
+            />
         </Link>
-        <button onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+            className={`text-3xl focus:outline-none z-50 ${
+            isTransparent ? "text-white" : "text-black"
+            }`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+        >
             {menuOpen ? "✕" : "☰"}
         </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+        <ul className="mobile-dropdown md:hidden">
+            <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            </li>
+            <li>
+            <Link to="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
+            </li>
+            <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            </li>
+            <li>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+            </li>
+        </ul>
+        )}
 
     </nav>
   );
