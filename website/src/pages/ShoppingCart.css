@@ -18,6 +18,8 @@
       flex-direction: column !important;
       align-items: center !important;
       padding: 1rem !important;
+      width: 90% !important;
+      max-width: 350px !important;
     }
   
     .cart-item-image {
@@ -47,21 +49,20 @@
   
     .cart-total {
       flex-direction: column !important;
-      align-items: center !important;
-      gap: 0.5rem !important;
       margin-top: 5px !important;
     }
   
     .cart-total-amount {
-      font-size: 1.5rem !important;
-      right: auto !important;
+        font-size: 1.5rem !important;
+        right: auto !important;
     }
   
     .checkout-btn {
-      width: 90% !important;
-      max-width: 300px !important;
-      padding: 1rem !important;
-      font-size: 1rem !important;
-      margin-left: 10vw !important;
+        align-items: center !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        padding: 1rem !important;
+        font-size: 1rem !important;
+        margin-left: 15vw !important;
     }
 }
