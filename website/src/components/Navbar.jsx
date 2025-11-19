@@ -13,7 +13,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Determine if navbar should be transparent (only on home page when not scrolled)
   const isHomePage = location.pathname === "/";
   const isTransparent = isHomePage && !scrolled;
 
@@ -85,67 +84,44 @@ function Navbar() {
         </li>
       </ul>
 
-      {/* Mobile: Cart and Hamburger */}
-      <div className="mobile-section items-center gap-4">
-        <Link to="/shopping-cart" className="block">
-          <img 
+        {/* Mobile: Cart and Hamburger */}
+        <div className="mobile-section md:hidden flex items-center gap-4">
+        <Link to="/shopping-cart" className="block z-50">
+            <img 
             src={isTransparent ? "/cart1.png" : "/cart2.png"} 
             alt="Cart" 
             className="w-[20px] h-[20px] object-contain" 
-          />
+            />
         </Link>
         <button
-          className={`text-3xl focus:outline-none transition-colors ${
+            className={`text-3xl focus:outline-none z-50 ${
             isTransparent ? "text-white" : "text-black"
-          }`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+            }`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
         >
-          {menuOpen ? "✕" : "☰"}
+            {menuOpen ? "✕" : "☰"}
         </button>
-      </div>
+        </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <ul className="mobile-dropdown absolute top-16 right-0 w-48 bg-[#fffaf3] flex flex-col gap-4 p-4 rounded-b-lg shadow-lg text-black">
-          <li>
-            <Link 
-              to="/" 
-              onClick={() => setMenuOpen(false)}
-              className={`no-underline hover:underline ${location.pathname === "/" ? "underline" : ""}`}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/menu" 
-              onClick={() => setMenuOpen(false)}
-              className={`no-underline hover:underline ${location.pathname === "/menu" ? "underline" : ""}`}
-            >
-              Menu
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/about" 
-              onClick={() => setMenuOpen(false)}
-              className={`no-underline hover:underline ${location.pathname === "/about" ? "underline" : ""}`}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/contact" 
-              onClick={() => setMenuOpen(false)}
-              className={`no-underline hover:underline ${location.pathname === "/contact" ? "underline" : ""}`}
-            >
-              Contact
-            </Link>
-          </li>
+        {/* Mobile Menu */}
+        {menuOpen && (
+        <ul className="mobile-dropdown md:hidden">
+            <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            </li>
+            <li>
+            <Link to="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
+            </li>
+            <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            </li>
+            <li>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+            </li>
         </ul>
-      )}
+        )}
+
     </nav>
   );
 }
