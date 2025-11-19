@@ -21,13 +21,13 @@
   @media (max-width: 767px) {
     .footer-content {
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
       text-align: center;
     }
   
     .social-media {
-      flex-direction: column;
-      gap: 15px;
+      flex-direction: row;
+      gap: 10px;
     }
   
     .business-hours {

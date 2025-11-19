@@ -1,14 +1,18 @@
 .desktop-menu {
     display: flex;
   }
-
+  
   .mobile-section {
     display: none;
   }
   
   .mobile-dropdown {
     display: flex;
-  }
+    position: absolute;
+    top: 64px;
+    right: 0;
+    z-index: 40;
+    }
   
   @media (max-width: 767px) {
     .desktop-menu {
@@ -18,10 +22,10 @@
     .mobile-section {
       display: flex;
     }
-  }
+}
   
   @media (min-width: 768px) {
     .mobile-dropdown {
       display: none !important;
     }
-  }
+}

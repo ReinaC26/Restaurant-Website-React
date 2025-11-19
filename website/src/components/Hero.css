@@ -1,7 +1,7 @@
 /* Mobile responsiveness only */
 @media (max-width: 639px) {
     .hero-section {
-      height: 70vh;
+      height: 50vh;
       padding: 0 1rem;
     }
   
@@ -25,4 +25,4 @@
       padding: 8px;
       width: 150px;
     }
-  }
+}
