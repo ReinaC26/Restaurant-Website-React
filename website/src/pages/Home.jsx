@@ -1,47 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Hero from '../components/Hero';
+import GallerySlider from '../components/GallerySlider';
 
-function Navbar() {
+function Home() {
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [cartIcon, setCartIcon] = useState('cart1.png');
+  const sliderRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Navbar scroll effect + cart icon
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+        setCartIcon('cart2.png');
+      } else {
+        setScrolled(false);
+        setCartIcon('cart1.png');
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <nav
-      className={`fixed top-0 left-0 w-full h-16 flex justify-between items-center px-5 z-50 transition-all duration-500
-        ${scrolled ? 'bg-[#fffaf3] shadow-md' : 'bg-transparent'}`}
-    >
-      <div className="text-2xl font-bold text-white">Between the Bites</div>
+  // Gallery slider
+  useEffect(() => {
+    const wrapper = sliderRef.current;
+    const slides = wrapper?.querySelectorAll('.slide');
+    if (!wrapper || !slides?.length) return;
 
-      <ul className="flex gap-5">
-        {[
-          { name: 'Home', path: '/' },
-          { name: 'Menu', path: '/menu' },
-          { name: 'About', path: '/about' },
-          { name: 'Contact', path: '/contact' },
-          { name: 'Cart', path: '/shopping-cart' },
-        ].map((link) => (
-          <li key={link.path}>
-            <Link
-              to={link.path}
-              className={`px-2 py-1 transition-colors ${
-                location.pathname === link.path
-                  ? 'underline text-[#e76f51]'
-                  : 'text-white hover:underline'
-              }`}
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    const totalSlides = slides.length;
+
+    const interval = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % totalSlides);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const wrapper = sliderRef.current;
+    if (wrapper) {
+      wrapper.style.transition = 'transform 0.5s ease-in-out';
+      wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+  }, [currentIndex]);
+
+  const prevSlide = () => setCurrentIndex(prev => (prev === 0 ? sliderRef.current.querySelectorAll('.slide').length - 1 : prev - 1));
+  const nextSlide = () => setCurrentIndex(prev => (prev + 1) % sliderRef.current.querySelectorAll('.slide').length);
+
+  return (
+    <>
+      <Navbar scrolled={scrolled} cartIcon={cartIcon} />
+      <main>
+        <Hero />
+        <GallerySlider ref={sliderRef} prev={prevSlide} next={nextSlide} />
+      </main>
+    </>
   );
 }
 
-export default Navbar;
+export default Home;
