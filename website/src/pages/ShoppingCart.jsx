@@ -75,9 +75,13 @@ function ShoppingCart() {
           ) : (
             <div className="cart-container flex flex-col gap-[20px]">
               {cart.map((item, idx) => (
-                <div key={idx} className="cart-item w-[100%] max-w-[1000px] rounded-[15px] shadow-[0px_5px_10px_rgba(0,0,0,0.2)] block mx-auto flex md:flex-row items-center bg-[white] py-[20px] gap-[5px] relative">
-                  <img src={item.image} alt={item.name} className="ml-[2vw] w-[120px] h-[120px] object-cover rounded-[10px]" />
-                  <div className="cart-details flex-1 text-left ml-[1vw]">
+                <div key={idx} className="cart-item w-[100%] max-w-[1000px] rounded-[15px] shadow-[0px_5px_10px_rgba(0,0,0,0.2)] block mx-auto 
+                flex md:flex-row flex-wrap items-center bg-[white] py-[20px] gap-[5px] relative
+                max-md:flex-col max-md:items-center">
+                  <img src={item.image} alt={item.name} className="ml-[2vw] w-[120px] h-[120px] object-cover rounded-[10px]
+                    max-md:ml-0 max-md:mb-3" />
+                  <div className="cart-details flex-1 text-left ml-[1vw]
+                    max-md:text-center max-md:ml-0 max-md:mt-2">
                     <h3 className="text-xl font-semibold text-[#3b3b3b]">{item.name}</h3>
                     <p className="text-[#e76f51] font-bold text-[18px]" style={{ fontWeight: '700' }}>${item.price}</p>
                     <div className="quantity-container mt-2">
@@ -97,7 +101,9 @@ function ShoppingCart() {
                   </div>
                   <button
                     onClick={() => removeItem(item.name)}
-                    className="remove-btn bg-[#f4a261] text-[white] py-[10px] px-[10px] border-[0px] rounded-[5px] mr-[5vw] mt-2 md:mt-0 hover:scale-105 transition-transform duration-500"
+                    className="remove-btn bg-[#f4a261] text-[white] py-[10px] px-[10px] border-[0px] rounded-[5px] 
+                    mr-[5vw] mt-2 md:mt-0
+                    max-md:mx-auto max-md:mt-3"
                   >
                     Remove
                   </button>

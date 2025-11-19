@@ -143,7 +143,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/shopping-cart" onClick={() => setMenuOpen(false)}>
+            <Link to="/shopping-cart">
               <img src="/cart2.png" alt="Cart" className="w-4 h-4" />
             </Link>
           </li>

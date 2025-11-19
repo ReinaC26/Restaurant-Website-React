@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <footer className="bg-[#ffbb93df] text-black font-serif py-10 px-5 mt-auto">
-      <div className="flex flex-[col] md:flex-row items-center justify-center gap-[5vw] mb-5">
+      <div className="flex flex-row md:flex-row items-center justify-center gap-[5vw] mb-5">
         {/* Social Media Links */}
         <div className="social-media flex gap-[20px]">
           <a

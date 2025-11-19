@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import GallerySlider from '../components/GallerySlider';
 

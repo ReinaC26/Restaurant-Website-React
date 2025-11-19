@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const menuItems = [
   {
@@ -99,12 +98,10 @@ const menuItems = [
 function Menu() {
   const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
 
-  // Sync cart with localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Add item to cart
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((i) => i.name === item.name);
@@ -119,52 +116,63 @@ function Menu() {
     alert(`${item.name} added to cart!`);
   };
 
-  // Navbar scroll effect and active link highlighting
-  useEffect(() => {
-    const navbar = document.querySelector(".navbar");
-    const links = document.querySelectorAll(".nav-links li a");
-
-    // Highlight active link
-    links.forEach((link) => {
-      const linkPath = new URL(link.href).pathname;
-      if (linkPath === window.location.pathname) link.classList.add("active");
-    });
-
-    const handleScroll = () => {
-      if (window.scrollY > 50) navbar.classList.add("scrolled");
-      else navbar.classList.remove("scrolled");
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <Navbar />
       <main className="pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
-        <h1 className="text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]">Our Menu</h1>
+        <h1 className="text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]
+          max-sm:text-[32px] max-sm:mt-[20px]">
+          Our Menu
+        </h1>
 
         {menuItems.map((category, idx) => (
           <section key={idx} className="mb-12">
-            <h2 className="text-[35px] md:text-4xl text-[#3b3b3b] my-5 ">{category.category}</h2>
-            <div className="grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12">
+            <h2 className="text-[35px] md:text-4xl text-[#3b3b3b] my-5 
+              max-sm:text-[26px]">
+              {category.category}
+            </h2>
+
+            <div
+              className="grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12 
+              max-sm:grid-cols-1 max-sm:px-4 max-sm:gap-[15px]"
+            >
               {category.items.map((item, index) => (
                 <div
                   key={index}
-                  className="text-left bg-[white] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)] p-[20px] py-[30px] relative hover:-translate-y-1 hover:shadow-2xl hover:-translate-y-[3px] transition-all duration-300"
+                  className="text-left bg-[white] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)]
+                  p-[20px] py-[30px] relative hover:-translate-y-[3px] hover:shadow-2xl 
+                  transition-all duration-300
+
+                  max-sm:p-[15px] max-sm:text-center"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-[150px] h-[150px] object-cover rounded-[15px] mb-4"
+                    className="w-[150px] h-[150px] object-cover rounded-[15px] mb-4 
+                    max-sm:w-[120px] max-sm:h-[120px] max-sm:mx-auto"
                   />
-                  <h3 className="text-xl font-semibold text-[#3b3b3b] mb-2">{item.name}</h3>
-                  <p className="text-gray-600 mb-4">{item.description}</p>
-                  <span className="text-[#e76f51] font-bold text-[20px]">${item.price}</span>
+
+                  <h3 className="text-xl font-semibold text-[#3b3b3b] mb-2 
+                    max-sm:text-lg">
+                    {item.name}
+                  </h3>
+
+                  <p className="text-gray-600 mb-4 max-sm:text-sm">
+                    {item.description}
+                  </p>
+
+                  <span className="text-[#e76f51] font-bold text-[20px]
+                    max-sm:text-[18px]">
+                    ${item.price}
+                  </span>
+
                   <button
                     onClick={() => addToCart(item)}
-                    className="absolute right-[25px] bg-[#f8b400] hover:bg-[#ffca3a] text-[white] rounded-full px-[20px] py-[12px] mb-[2px] font-semibold shadow-[1px_2px_5px_rgba(0,0,0,0.2)] hover:-translate-y-[3px] transition-all duration-300 border-[0px]"
+                    className="absolute right-[25px] bg-[#f8b400] hover:bg-[#ffca3a]
+                    text-[white] rounded-full px-[20px] py-[12px] mb-[2px] font-semibold 
+                    shadow-[1px_2px_5px_rgba(0,0,0,0.2)] transition-all duration-300 border-[0px]
+
+                    max-sm:static max-sm:mt-4 max-sm:w-[100%] max-sm:py-[10px] max-sm:px-[0]"
                   >
                     Add to Cart
                   </button>
