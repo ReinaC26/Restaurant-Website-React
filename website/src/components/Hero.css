@@ -1,0 +1,28 @@
+/* Mobile responsiveness only */
+@media (max-width: 639px) {
+    .hero-section {
+      height: 70vh;
+      padding: 0 1rem;
+    }
+  
+    .hero-content {
+      max-width: 90%;
+      padding: 0.5rem;
+    }
+  
+    .hero-title {
+      font-size: 38px !important;
+      line-height: 1.1;
+    }
+  
+    .hero-subtitle {
+      font-size: 16px !important;
+      margin-bottom: 15px !important;
+    }
+  
+    .hero-button {
+      font-size: 14px;
+      padding: 8px;
+      width: 150px;
+    }
+  }

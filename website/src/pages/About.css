@@ -1,0 +1,21 @@
+/* Mobile responsiveness */
+@media (max-width: 639px) {
+    .about-title {
+      font-size: 32px !important;
+      margin-bottom: 1.5rem !important;
+    }
+  
+    .story-content {
+      font-size: 16px !important;
+    }
+  
+    .about-text {
+      font-size: 16px !important;
+      text-align: left !important;
+    }
+  
+    .about-image {
+      width: 90% !important;
+      margin-bottom: 5vh !important;
+    }
+}

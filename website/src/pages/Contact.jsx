@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import "./Contact.css";
 
 function Contact() {
   useEffect(() => {
@@ -47,16 +48,13 @@ function Contact() {
       <Navbar />
       <main className="pt-[8vh] bg-[#fffaf3] pb-[6vh] md:px-16">
         <section className="contact-section py-20">
-          <h1 className="text-[50px] md:text-5xl text-[#e76f51] text-center mb-12">
+          <h1 className="contact-title text-[50px] md:text-5xl text-[#e76f51] text-center mb-12">
             Contact Us
           </h1>
 
-          <div className="contact-wrapper flex flex-row items-start justify-center gap-[3vw] flex-wrap max-w-[1300px] mx-auto
-            flex-col max-md:flex-col  /* stack on mobile */
-            items-center max-md:items-center  /* center on mobile */
-            ">
+          <div className="contact-wrapper flex flex-row items-start justify-center gap-[3vw] flex-wrap max-w-[1300px] mx-auto">
             {/* Google Map */}
-            <div className="map-container w-[600px] max-w-full max-md:w-full mt-[7vh]">
+            <div className="map-container w-[600px] max-w-full mt-[7vh]">
                 <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d689.0896034243143!2d-73.96199657750266!3d40.76810618583445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258ea40102cdf%3A0xf2c3b6442c44c0fd!2s206%20E%2070th%20St%2C%20New%20York%2C%20NY%2010021!5e1!3m2!1sen!2sus!4v1759622900355!5m2!1sen!2sus&maptype=roadmap"
                 width="100%"
@@ -69,7 +67,7 @@ function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="contact-form-container w-[600px] max-w-full max-md:w-full mt-7 md:mt-0">
+            <div className="contact-form-container w-[600px] max-w-full mt-7 md:mt-0">
                 <form
                 className="contact-form flex flex-col gap-[20px] bg-[white] p-[30px] md:p-12 rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)]"
                 onSubmit={handleSubmit}
@@ -85,8 +83,7 @@ function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="p-[15px] border border-gray-300 rounded-[10px] text-gray-700
-                             max-md:p-3"
+                  className="contact-input p-[15px] border border-gray-300 rounded-[10px] text-gray-700"
                 />
 
                 <label htmlFor="email" className="font-semibold text-gray-700">
@@ -100,8 +97,7 @@ function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="p-[15px] border border-gray-300 rounded-[10px] text-gray-700
-                             max-md:p-3"
+                  className="contact-input p-[15px] border border-gray-300 rounded-[10px] text-gray-700"
                 />
 
                 <label htmlFor="message" className="font-semibold text-gray-700">
@@ -115,15 +111,12 @@ function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="p-[15px] border border-gray-300 rounded-[10px] text-gray-700 resize-y
-                             max-md:p-3 max-md:rows-4"
+                  className="contact-textarea p-[15px] border border-gray-300 rounded-[10px] text-gray-700 resize-y"
                 ></textarea>
 
                 <button
                   type="submit"
-                  className="bg-[#e76f51] text-[18px] text-[white] p-[15px] text-lg rounded-[10px] border-[0px] shadow-[2px_5px_10px_rgba(0,0,0,0.2)]
-                             hover:-translate-y-1 hover:shadow-2xl hover:-translate-y-[3px] transition-all duration-300
-                             max-md:p-3 max-md:text-[16px]"
+                  className="contact-submit-btn bg-[#e76f51] text-[18px] text-[white] p-[15px] text-lg rounded-[10px] border-[0px] shadow-[2px_5px_10px_rgba(0,0,0,0.2)] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
                 >
                   Send Message
                 </button>
@@ -143,4 +136,3 @@ function Contact() {
 }
 
 export default Contact;
-

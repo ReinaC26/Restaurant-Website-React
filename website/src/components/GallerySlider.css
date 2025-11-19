@@ -1,0 +1,29 @@
+/* Mobile responsiveness */
+@media (max-width: 639px) {
+    .gallery-title {
+      font-size: 28px !important;
+    }
+  
+    .gallery-container {
+      height: 260px !important;
+      padding: 0.75rem !important;
+    }
+  
+    .gallery-image {
+      width: 85% !important;
+      height: 180px !important;
+      margin-top: 10px !important;
+    }
+  
+    .gallery-btn-prev {
+      font-size: 28px !important;
+      left: 10px !important;
+      padding: 6px !important;
+    }
+  
+    .gallery-btn-next {
+      font-size: 28px !important;
+      right: 10px !important;
+      padding: 6px !important;
+    }
+}

@@ -1,11 +1,12 @@
 import React from "react";
+import './Footer.css';
 
 function Footer() {
   return (
     <footer className="bg-[#ffbb93df] text-black font-serif py-10 px-5 mt-auto">
-      <div className="flex flex-row md:flex-row items-center justify-center gap-[5vw] mb-5">
+      <div className="footer-content">
         {/* Social Media Links */}
-        <div className="social-media flex gap-[20px]">
+        <div className="social-media">
           <a
             href="https://www.facebook.com"
             target="_blank"
@@ -36,7 +37,7 @@ function Footer() {
         </div>
 
         {/* Business Hours */}
-        <div className="business-hours text-center md:text-left">
+        <div className="business-hours">
           <h3 className="text-lg font-semibold">Business Hours</h3>
           <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
           <p>Sat - Sun: 9:00 AM - 6:00 PM</p>

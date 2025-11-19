@@ -1,0 +1,36 @@
+/* Desktop layout - horizontal */
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    margin-bottom: 1.25rem;
+  }
+  
+  .social-media {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .business-hours {
+    text-align: left;
+  }
+  
+  /* Mobile layout - vertical stack */
+  @media (max-width: 767px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+  
+    .social-media {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .business-hours {
+      text-align: center;
+    }
+  }

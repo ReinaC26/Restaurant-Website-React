@@ -1,0 +1,48 @@
+/* Mobile responsiveness */
+@media (max-width: 639px) {
+    .menu-title {
+      font-size: 32px !important;
+      margin-top: 20px !important;
+    }
+  
+    .menu-category-title {
+      font-size: 26px !important;
+    }
+  
+    .menu-grid {
+      grid-template-columns: 1fr !important;
+      padding: 0 1rem !important;
+      gap: 15px !important;
+    }
+  
+    .menu-card {
+      padding: 15px !important;
+      text-align: center !important;
+    }
+  
+    .menu-image {
+      width: 120px !important;
+      height: 120px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  
+    .menu-item-name {
+      font-size: 1.125rem !important;
+    }
+  
+    .menu-description {
+      font-size: 0.875rem !important;
+    }
+  
+    .menu-price {
+      font-size: 18px !important;
+    }
+  
+    .menu-add-btn {
+      position: static !important;
+      margin-top: 1rem !important;
+      width: 100% !important;
+      padding: 10px 0 !important;
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import "./ShoppingCart.css";
 
 function ShoppingCart() {
   // Load cart from localStorage
@@ -56,8 +56,8 @@ function ShoppingCart() {
       <Navbar />
       <main className="pt-[8vh] bg-[#fffaf3] font-serif text-center">
         <section className="cart-header">
-          <h1 className="text-[50px] md:text-5xl text-[#e76f51]">Your Cart</h1>
-          <p className="text-lg text-[#3b3b3b] mb-6">Review your selected dishes before checkout</p>
+          <h1 className="cart-title text-[50px] md:text-5xl text-[#e76f51]">Your Cart</h1>
+          <p className="cart-subtitle text-lg text-[#3b3b3b] mb-6">Review your selected dishes before checkout</p>
         </section>
 
         <section className="cart-section md:px-12">
@@ -75,15 +75,11 @@ function ShoppingCart() {
           ) : (
             <div className="cart-container flex flex-col gap-[20px]">
               {cart.map((item, idx) => (
-                <div key={idx} className="cart-item w-[100%] max-w-[1000px] rounded-[15px] shadow-[0px_5px_10px_rgba(0,0,0,0.2)] block mx-auto 
-                flex md:flex-row flex-wrap items-center bg-[white] py-[20px] gap-[5px] relative
-                max-md:flex-col max-md:items-center">
-                  <img src={item.image} alt={item.name} className="ml-[2vw] w-[120px] h-[120px] object-cover rounded-[10px]
-                    max-md:ml-0 max-md:mb-3" />
-                  <div className="cart-details flex-1 text-left ml-[1vw]
-                    max-md:text-center max-md:ml-0 max-md:mt-2">
-                    <h3 className="text-xl font-semibold text-[#3b3b3b]">{item.name}</h3>
-                    <p className="text-[#e76f51] font-bold text-[18px]" style={{ fontWeight: '700' }}>${item.price}</p>
+                <div key={idx} className="cart-item w-[100%] max-w-[1000px] rounded-[15px] shadow-[0px_5px_10px_rgba(0,0,0,0.2)] block mx-auto flex md:flex-row flex-wrap items-center bg-[white] py-[20px] gap-[5px] relative">
+                  <img src={item.image} alt={item.name} className="cart-item-image ml-[2vw] w-[120px] h-[120px] object-cover rounded-[10px]" />
+                  <div className="cart-details flex-1 text-left ml-[1vw]">
+                    <h3 className="cart-item-name text-xl font-semibold text-[#3b3b3b]">{item.name}</h3>
+                    <p className="cart-item-price text-[#e76f51] font-bold text-[18px]" style={{ fontWeight: '700' }}>${item.price}</p>
                     <div className="quantity-container mt-2">
                       <label className="mr-[10px]">Quantity:</label>
                       <select
@@ -101,9 +97,7 @@ function ShoppingCart() {
                   </div>
                   <button
                     onClick={() => removeItem(item.name)}
-                    className="remove-btn bg-[#f4a261] text-[white] py-[10px] px-[10px] border-[0px] rounded-[5px] 
-                    mr-[5vw] mt-2 md:mt-0
-                    max-md:mx-auto max-md:mt-3"
+                    className="remove-btn bg-[#f4a261] text-[white] py-[10px] px-[10px] border-[0px] rounded-[5px] mr-[5vw] mt-2 md:mt-0"
                   >
                     Remove
                   </button>
@@ -111,10 +105,10 @@ function ShoppingCart() {
               ))}
             </div>
           )}
-            <hr className=" w-[100%] max-w-[1000px] mt-[20px] border-[#f4a261]"></hr>
+          <hr className="w-[100%] max-w-[1000px] mt-[20px] border-[#f4a261]"></hr>
           {/* Cart total */}
-          <div className="cart-total flex justify-end items-center text-right gap-[15px] ">
-            <h3 className="text-2xl font-bold text-[black]">Total: ${total.toFixed(2)}</h3>
+          <div className="cart-total flex justify-end items-center text-right gap-[15px]">
+            <h3 className="cart-total-amount text-2xl font-bold text-[black]">Total: ${total.toFixed(2)}</h3>
             <button className="checkout-btn inline-block block mr-[15vw] flex text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#e76f51] hover:scale-105 transition-transform duration-500">
               Proceed to Checkout
             </button>

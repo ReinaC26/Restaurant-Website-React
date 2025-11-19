@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import "./Menu.css";
 
 const menuItems = [
   {
@@ -119,60 +120,44 @@ function Menu() {
   return (
     <>
       <Navbar />
-      <main className="pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
-        <h1 className="text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]
-          max-sm:text-[32px] max-sm:mt-[20px]">
+      <main className="menu-main pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
+        <h1 className="menu-title text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]">
           Our Menu
         </h1>
 
         {menuItems.map((category, idx) => (
           <section key={idx} className="mb-12">
-            <h2 className="text-[35px] md:text-4xl text-[#3b3b3b] my-5 
-              max-sm:text-[26px]">
+            <h2 className="menu-category-title text-[35px] md:text-4xl text-[#3b3b3b] my-5">
               {category.category}
             </h2>
 
-            <div
-              className="grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12 
-              max-sm:grid-cols-1 max-sm:px-4 max-sm:gap-[15px]"
-            >
+            <div className="menu-grid grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12">
               {category.items.map((item, index) => (
                 <div
                   key={index}
-                  className="text-left bg-[white] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)]
-                  p-[20px] py-[30px] relative hover:-translate-y-[3px] hover:shadow-2xl 
-                  transition-all duration-300
-
-                  max-sm:p-[15px] max-sm:text-center"
+                  className="menu-card text-left bg-[white] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)] p-[20px] py-[30px] relative hover:-translate-y-[3px] hover:shadow-2xl transition-all duration-300"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-[150px] h-[150px] object-cover rounded-[15px] mb-4 
-                    max-sm:w-[120px] max-sm:h-[120px] max-sm:mx-auto"
+                    className="menu-image w-[150px] h-[150px] object-cover rounded-[15px] mb-4"
                   />
 
-                  <h3 className="text-xl font-semibold text-[#3b3b3b] mb-2 
-                    max-sm:text-lg">
+                  <h3 className="menu-item-name text-xl font-semibold text-[#3b3b3b] mb-2">
                     {item.name}
                   </h3>
 
-                  <p className="text-gray-600 mb-4 max-sm:text-sm">
+                  <p className="menu-description text-gray-600 mb-4">
                     {item.description}
                   </p>
 
-                  <span className="text-[#e76f51] font-bold text-[20px]
-                    max-sm:text-[18px]">
+                  <span className="menu-price text-[#e76f51] font-bold text-[20px]">
                     ${item.price}
                   </span>
 
                   <button
                     onClick={() => addToCart(item)}
-                    className="absolute right-[25px] bg-[#f8b400] hover:bg-[#ffca3a]
-                    text-[white] rounded-full px-[20px] py-[12px] mb-[2px] font-semibold 
-                    shadow-[1px_2px_5px_rgba(0,0,0,0.2)] transition-all duration-300 border-[0px]
-
-                    max-sm:static max-sm:mt-4 max-sm:w-[100%] max-sm:py-[10px] max-sm:px-[0]"
+                    className="menu-add-btn absolute right-[25px] bg-[#f8b400] hover:bg-[#ffca3a] text-[white] rounded-full px-[20px] py-[12px] mb-[2px] font-semibold shadow-[1px_2px_5px_rgba(0,0,0,0.2)] transition-all duration-300 border-[0px]"
                   >
                     Add to Cart
                   </button>
