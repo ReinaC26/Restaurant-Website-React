@@ -19,7 +19,7 @@
       align-items: center !important;
       padding: 1rem !important;
       width: 90% !important;
-      max-width: 350px !important;
+      max-width: 330px !important;
     }
   
     .cart-item-image {
@@ -28,9 +28,9 @@
     }
   
     .cart-details {
-      text-align: center !important;
+      text-align: left !important;
       margin-left: 0 !important;
-      margin-top: 0.5rem !important;
+      margin-top: 0.3rem !important;
     }
   
     .cart-item-name {
@@ -49,7 +49,6 @@
   
     .cart-total {
       flex-direction: column !important;
-      margin-top: 5px !important;
     }
   
     .cart-total-amount {
@@ -63,6 +62,6 @@
         max-width: 300px !important;
         padding: 1rem !important;
         font-size: 1rem !important;
-        margin-left: 15vw !important;
+        margin-left: 20vw !important;
     }
 }
