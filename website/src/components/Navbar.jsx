@@ -18,15 +18,13 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full flex justify-between items-center px-6 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full h-16 flex justify-between items-center px-6 z-50 transition-all duration-300 ${
         isTransparent ? "bg-transparent" : "bg-[#fffaf3] shadow-md"
       }`}
-      style={{ height: "4.5rem" }}
     >
-      {/* Logo */}
-      <div
-        className={`text-[25px] font-bold transition-colors ${
-          isTransparent ? "text-white" : "text-black"
+      <div 
+        className={`text-[25px] font-bold transition-colors px-[20px] ${
+          isTransparent ? "text-[white]" : "text-[black]"
         }`}
         style={{ fontFamily: "'Inria Serif', serif" }}
       >
@@ -39,7 +37,7 @@ function Navbar() {
           <Link
             to="/"
             className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
-              isTransparent ? "text-white" : "text-black"
+              isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/" ? "underline underline-offset-4" : ""}`}
           >
             Home
@@ -49,7 +47,7 @@ function Navbar() {
           <Link
             to="/menu"
             className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
-              isTransparent ? "text-white" : "text-black"
+              isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/menu" ? "underline underline-offset-4" : ""}`}
           >
             Menu
@@ -59,7 +57,7 @@ function Navbar() {
           <Link
             to="/about"
             className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
-              isTransparent ? "text-white" : "text-black"
+              isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/about" ? "underline underline-offset-4" : ""}`}
           >
             About
@@ -69,7 +67,7 @@ function Navbar() {
           <Link
             to="/contact"
             className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
-              isTransparent ? "text-white" : "text-black"
+              isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/contact" ? "underline underline-offset-4" : ""}`}
           >
             Contact
@@ -77,52 +75,44 @@ function Navbar() {
         </li>
         <li className="flex items-center">
           <Link to="/shopping-cart" className="block">
-            <img
-              src={isTransparent ? "/cart1.png" : "/cart2.png"}
-              alt="Cart"
-              className="w-[20px] h-[20px] object-contain"
+            <img 
+              src={isTransparent ? "/cart1.png" : "/cart2.png"} 
+              alt="Cart" 
+              className="w-[20px] h-[20px] object-contain" 
             />
           </Link>
         </li>
       </ul>
 
-      {/* Mobile Hamburger + Cart */}
-      <div className="mobile-section md:hidden flex items-center gap-4 z-50">
-        <Link to="/shopping-cart">
-          <img
-            src={isTransparent ? "/cart1.png" : "/cart2.png"}
-            alt="Cart"
-            className="w-[20px] h-[20px] object-contain"
-          />
-        </Link>
-        <button
-          className={`text-3xl focus:outline-none ${
-            isTransparent ? "text-white" : "text-black"
-          }`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <ul className="mobile-dropdown md:hidden">
-          <li>
-            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          </li>
-          <li>
-            <Link to="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
-          </li>
-          <li>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-          </li>
-          <li>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-          </li>
+        <ul className="desktop-menu hidden md:flex flex-row gap-[45px] px-[20px] items-center list-none">
+            <li>
+                <Link to="/">Home</Link>
+            </li>
+            <li>
+                <Link to="/menu">Menu</Link>
+            </li>
+            <li>
+                <Link to="/about">About</Link>
+            </li>
+            <li>
+                <Link to="/contact">Contact</Link>
+            </li>
+            <li className="flex items-center">
+                <Link to="/shopping-cart">
+                <img src={isTransparent ? "/cart1.png" : "/cart2.png"} alt="Cart" className="w-[20px] h-[20px]" />
+                </Link>
+            </li>
         </ul>
-      )}
+
+        {/* Mobile */}
+        <div className="mobile-section flex md:hidden items-center gap-4">
+        <Link to="/shopping-cart">
+            <img src={isTransparent ? "/cart1.png" : "/cart2.png"} alt="Cart" className="w-[20px] h-[20px]" />
+        </Link>
+        <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? "✕" : "☰"}
+        </button>
+        </div>
     </nav>
   );
 }
