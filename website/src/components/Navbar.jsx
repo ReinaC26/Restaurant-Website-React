@@ -84,7 +84,7 @@ function Navbar() {
         </li>
       </ul>
 
-        <ul className="desktop-menu hidden md:flex flex-row gap-[45px] px-[20px] items-center list-none">
+      <ul className="desktop-menu hidden md:flex flex-row gap-[45px] px-[20px] items-center list-none">
             <li>
                 <Link to="/">Home</Link>
             </li>
@@ -113,6 +113,7 @@ function Navbar() {
             {menuOpen ? "✕" : "☰"}
         </button>
         </div>
+
     </nav>
   );
 }
