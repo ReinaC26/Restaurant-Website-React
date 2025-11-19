@@ -152,19 +152,19 @@ function Menu() {
               {category.items.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-lg shadow-lg p-6 relative hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+                  className="bg-white rounded-[300px] shadow-lg p-6 relative hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
                 >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-20 object-cover rounded-md mb-4"
+                    className="w-[150px] h-[150px] object-cover rounded-md mb-4"
                   />
                   <h3 className="text-xl font-semibold text-[#3b3b3b] mb-2">{item.name}</h3>
                   <p className="text-gray-600 mb-4">{item.description}</p>
-                  <span className="text-[#e76f51] font-bold text-lg">${item.price}</span>
+                  <span className="text-[#e76f51] font-bold text-lg bottom-[4px]">${item.price}</span>
                   <button
                     onClick={() => addToCart(item)}
-                    className="absolute bottom-4 right-4 bg-yellow-500 hover:bg-yellow-400 text-white rounded-full px-4 py-2 font-semibold shadow-md transition-all duration-200"
+                    className="absolute bottom-[4px] right-4 bg-yellow-500 hover:bg-yellow-400 text-white rounded-full px-4 py-2 font-semibold shadow-md transition-all duration-200"
                   >
                     Add to Cart
                   </button>

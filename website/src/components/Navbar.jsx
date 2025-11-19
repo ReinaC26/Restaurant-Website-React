@@ -43,7 +43,7 @@ function Navbar() {
         <li>
           <Link
             to="/"
-            className={`hover:underline hover:underline-offset-4 transition-colors ${
+            className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
               isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/" ? "underline underline-offset-4" : ""}`}
           >
@@ -53,7 +53,7 @@ function Navbar() {
         <li>
           <Link
             to="/menu"
-            className={`hover:underline hover:underline-offset-4 transition-colors ${
+            className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
               isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/menu" ? "underline underline-offset-4" : ""}`}
           >
@@ -63,7 +63,7 @@ function Navbar() {
         <li>
           <Link
             to="/about"
-            className={`hover:underline hover:underline-offset-4 transition-colors ${
+            className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
               isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/about" ? "underline underline-offset-4" : ""}`}
           >
@@ -73,7 +73,7 @@ function Navbar() {
         <li>
           <Link
             to="/contact"
-            className={`hover:underline hover:underline-offset-4 transition-colors ${
+            className={`no-underline hover:underline hover:underline-offset-4 transition-colors ${
               isTransparent ? "text-[white]" : "text-[black]"
             } ${location.pathname === "/contact" ? "underline underline-offset-4" : ""}`}
           >

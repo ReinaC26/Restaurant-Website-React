@@ -75,9 +75,9 @@ function ShoppingCart() {
           ) : (
             <div className="cart-container flex flex-col gap-6">
               {cart.map((item, idx) => (
-                <div key={idx} className="cart-item flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg p-4 gap-4 relative">
-                  <img src={item.image} alt={item.name} className="w-full md:w-32 h-32 object-cover rounded-md" />
-                  <div className="cart-details flex-1 text-left">
+                <div key={idx} className="cart-item flex md:flex-row items-center bg-white rounded-lg shadow-lg p-4 gap-4 relative">
+                  <img src={item.image} alt={item.name} className="ml-[5vw] w-[150px] h-[150px] object-cover rounded-[10px]" />
+                  <div className="cart-details flex-1 text-left ml-[2vw]">
                     <h3 className="text-xl font-semibold text-[#3b3b3b]">{item.name}</h3>
                     <p className="text-[#e76f51] font-bold text-lg">${item.price}</p>
                     <div className="quantity-container mt-2">
@@ -97,7 +97,7 @@ function ShoppingCart() {
                   </div>
                   <button
                     onClick={() => removeItem(item.name)}
-                    className="remove-btn bg-[#f4a261] text-white py-1 px-3 rounded mt-2 md:mt-0"
+                    className="remove-btn bg-[#f4a261] text-[white] py-[3px] px-[5px] rounded-[5px] mr-[5vw] mt-2 md:mt-0"
                   >
                     Remove
                   </button>
@@ -108,8 +108,8 @@ function ShoppingCart() {
 
           {/* Cart total */}
           <div className="cart-total flex justify-end items-center mt-6 text-right">
-            <h3 className="text-2xl font-bold text-[#e76f51] mr-6">Total: ${total.toFixed(2)}</h3>
-            <button className="checkout-btn bg-[#e76f51] text-white py-2 px-4 rounded hover:scale-105 transition-transform">
+            <h3 className="text-2xl font-bold text-[#e76f51] mr-[6px]">Total: ${total.toFixed(2)}</h3>
+            <button className="checkout-btn inline-block text-[white] p-[10px] bg-[#f4a261] rounded-[5px] font-bold hover:bg-[#e76f51] hover:scale-105 transition-transform">
               Proceed to Checkout
             </button>
           </div>

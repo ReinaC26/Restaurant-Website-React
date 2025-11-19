@@ -3,14 +3,14 @@ import React from "react";
 function Footer() {
   return (
     <footer className="bg-[#ffbb938f] text-black font-serif py-10 px-5 mt-auto">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 mb-5">
+      <div className="flex flex-[col] md:flex-row items-center justify-center gap-[5vw] mb-5">
         {/* Social Media Links */}
-        <div className="social-media flex gap-4">
+        <div className="social-media flex gap-[20px]">
           <a
             href="https://www.facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold hover:text-[#fff9f5] transform hover:scale-110 transition"
+            className="font-semibold no-underline text-[black] hover:text-[#fff9f5] transform hover:scale-110 transition"
           >
             Facebook
           </a>
@@ -18,7 +18,7 @@ function Footer() {
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold hover:text-[#fff9f5] transform hover:scale-110 transition"
+            className="font-semibold no-underline text-[black] hover:text-[#fff9f5] transform hover:scale-110 transition"
           >
             Instagram
           </a>
@@ -26,7 +26,7 @@ function Footer() {
             href="https://www.twitter.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold hover:text-[#fff9f5] transform hover:scale-110 transition"
+            className="font-semibold no-underline text-[black] hover:text-[#fff9f5] transform hover:scale-110 transition"
           >
             Twitter
           </a>
