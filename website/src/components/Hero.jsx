@@ -15,7 +15,7 @@ function Hero() {
         <p className="text-[20px] md:text-2xl mb-[25px] font-medium">Enjoy the delicious moments, any time of day.</p>
         <a
           href="/menu"
-          className="inline-block text-[white] no-underline p-[10px] bg-[#f4a261] rounded-[5px] font-bold hover:bg-[#e76f51] transition transform hover:scale-105"
+          className="inline-block text-[white] no-underline p-[10px] bg-[#f4a261] rounded-[5px] font-bold hover:bg-[#e76f51] hover:scale-105 transition-transform duration-500 block mx-auto"
         >
           View Our Menu
         </a>

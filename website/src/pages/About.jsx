@@ -20,7 +20,7 @@ function About() {
     return (
         <>
         <Navbar />
-        <main className="pt-[50px] bg-[#fffaf3] flex flex-col items-center gap-10 px-[20vw] md:px-16">
+        <main className="pt-[8vh] bg-[#fffaf3] flex flex-col items-center gap-10 px-[20vw] md:px-16">
             <section className="story-section flex flex-col md:flex-row items-center gap-[6vh]">
             <div className="story-content max-w-xl text-center md:text-left text-[20px]">
                 <h1 className="text-[50px] md:text-5xl text-[#e76f51] mb-6">Our Story</h1>

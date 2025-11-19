@@ -28,20 +28,20 @@ function GallerySlider() {
               <img
                 src={`${img}`}
                 alt={img}
-                className="w-3/5 h-[350px] object-cover rounded-[10px] mt-[25px] shadow-md hover:scale-105 transition-transform"
+                className="w-3/5 h-[350px] object-cover rounded-[10px] mt-[25px] shadow-[1px_3px_6px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-500 block mx-auto"
               />
             </div>
           ))}
         </div>
         <button
           onClick={prevSlide}
-          className="absolute top-1/2 left-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] hover:scale-110"
+          className="absolute top-1/2 left-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] border-[0px] shadow-[1px_3px_6px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-500 block mx-auto"
         >
           &#10094;
         </button>
         <button
           onClick={nextSlide}
-          className="absolute top-1/2 right-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] hover:scale-110"
+          className="absolute top-1/2 right-[40px] -translate-y-1/2 bg-[#ff9f68]/90 text-[white] p-[10px] rounded-[50px] text-[50px] border-[0px] shadow-[1px_3px_6px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-500 block mx-auto"
         >
           &#10095;
         </button>
