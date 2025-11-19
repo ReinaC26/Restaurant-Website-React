@@ -110,7 +110,7 @@ function Contact() {
 
                     <button
                     type="submit"
-                    className="bg-[#e76f51] text-[18px] text-[white] p-[15px] text-lg rounded-[10px] border-[0px] hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    className="bg-[#e76f51] text-[18px] text-[white] p-[15px] text-lg rounded-[10px] border-[0px] shadow-[2px_5px_10px_rgba(0,0,0,0.2)] hover:-translate-y-1 hover:shadow-2xl hover:-translate-y-[3px] transition-all duration-300"
                     >
                     Send Message
                     </button>
