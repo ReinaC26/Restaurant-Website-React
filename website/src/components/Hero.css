@@ -1,7 +1,7 @@
 /* Mobile responsiveness only */
 @media (max-width: 639px) {
     .hero-section {
-      height: 50vh;
+      height: 30vh;
       padding: 0 1rem;
     }
   
