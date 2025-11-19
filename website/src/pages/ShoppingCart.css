@@ -10,7 +10,10 @@
       padding: 0 1rem;
     }
   
-  
+    .cart-content {
+      padding: 1rem !important;
+    }
+    
     .cart-item {
       flex-direction: column !important;
       align-items: center !important;
@@ -19,7 +22,7 @@
   
     .cart-item-image {
       margin-left: 0 !important;
-      margin-bottom: 0.75rem !important;
+      margin-bottom: 5px !important;
     }
   
     .cart-details {
@@ -58,5 +61,6 @@
       max-width: 300px !important;
       padding: 1rem !important;
       font-size: 1rem !important;
+      margin-left: 5vw !important;
     }
 }
