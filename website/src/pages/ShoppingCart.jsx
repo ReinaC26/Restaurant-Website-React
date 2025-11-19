@@ -77,9 +77,9 @@ function ShoppingCart() {
               {cart.map((item, idx) => (
                 <div key={idx} className="cart-item w-[100%] max-w-[1000px] rounded-[15px] shadow-[0px_5px_10px_rgba(0,0,0,0.2)] block mx-auto flex md:flex-row items-center bg-[white] py-[20px] gap-[5px] relative">
                   <img src={item.image} alt={item.name} className="ml-[2vw] w-[120px] h-[120px] object-cover rounded-[10px]" />
-                  <div className="cart-details flex-1 text-left ml-[2vw]">
+                  <div className="cart-details flex-1 text-left ml-[1vw]">
                     <h3 className="text-xl font-semibold text-[#3b3b3b]">{item.name}</h3>
-                    <p className="text-[#e76f51] font-bold text-lg">${item.price}</p>
+                    <p className="text-[#e76f51] font-bold text-[18px]" style={{ fontWeight: '700' }}>${item.price}</p>
                     <div className="quantity-container mt-2">
                       <label className="mr-[10px]">Quantity:</label>
                       <select
