@@ -105,9 +105,9 @@ function ShoppingCart() {
               ))}
             </div>
           )}
-
+            <hr className=" w-[100%] max-w-[1000px] mt-[20px] border-[#f4a261]"></hr>
           {/* Cart total */}
-          <div className="cart-total flex justify-end items-center mt-[10px] text-right gap-[15px] ">
+          <div className="cart-total flex justify-end items-center text-right gap-[15px] ">
             <h3 className="text-2xl font-bold text-[black]">Total: ${total.toFixed(2)}</h3>
             <button className="checkout-btn inline-block block mr-[15vw] flex text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#e76f51] hover:scale-105 transition-transform duration-500">
               Proceed to Checkout
