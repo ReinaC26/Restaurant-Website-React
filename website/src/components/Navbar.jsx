@@ -86,7 +86,7 @@ function Navbar() {
 
         {/* Mobile: Cart and Hamburger */}
         <div className="mobile-section md:hidden flex items-center gap-4">
-        <Link to="/shopping-cart" className="block z-50">
+        <Link to="/shopping-cart" className="block">
             <img 
             src={isTransparent ? "/cart1.png" : "/cart2.png"} 
             alt="Cart" 
@@ -94,7 +94,7 @@ function Navbar() {
             />
         </Link>
         <button
-            className={`text-3xl focus:outline-none z-50 ${
+            className={`text-3xl focus:outline-none ${
             isTransparent ? "text-white" : "text-black"
             }`}
             onClick={() => setMenuOpen(!menuOpen)}

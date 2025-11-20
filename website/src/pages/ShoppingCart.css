@@ -1,54 +1,56 @@
 /* Mobile responsiveness */
 @media (max-width: 767px) {
     .cart-title {
-      font-size: 32px !important;
-      margin-bottom: 1rem !important;
+        font-size: 32px !important;
+        margin-bottom: 1rem !important;
     }
   
     .cart-subtitle {
-      font-size: 1rem !important;
-      padding: 0 1rem;
+        font-size: 1rem !important;
+        padding: 0 1rem;
     }
   
     .cart-content {
-      padding: 1rem !important;
+        padding: 1rem !important;
     }
     
     .cart-item {
-      flex-direction: column !important;
-      align-items: center !important;
-      padding: 1rem !important;
-      width: 90% !important;
-      max-width: 330px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 1rem !important;
+        width: 90% !important;
+        max-width: 330px !important;
     }
   
     .cart-item-image {
-      margin-left: 0 !important;
-      margin-bottom: 5px !important;
+        margin-left: 0 !important;
+        margin-bottom: 5px !important;
+        height: 50px !important;
+        width: 50px !important;
     }
   
     .cart-details {
-      text-align: left !important;
-      margin-left: 0 !important;
-      margin-top: 0.3rem !important;
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-top: 0.3rem !important;
     }
   
     .cart-item-name {
-      font-size: 1.125rem !important;
+        font-size: 1.125rem !important;
     }
   
     .cart-item-price {
-      font-size: 1rem !important;
+        font-size: 1rem !important;
     }
   
     .remove-btn {
-      margin-left: auto !important;
-      margin-right: auto !important;
-      margin-top: 0.75rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0.75rem !important;
     }
   
     .cart-total {
-      flex-direction: column !important;
+        flex-direction: column !important;
     }
   
     .cart-total-amount {
@@ -62,6 +64,6 @@
         max-width: 300px !important;
         padding: 1rem !important;
         font-size: 1rem !important;
-        margin-left: 20vw !important;
+        margin-left: 18vw !important;
     }
 }
