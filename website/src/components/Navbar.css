@@ -1,33 +1,37 @@
-.desktop-menu {
-    display: flex;
+/* Desktop Menu */
+ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
   
+  /* Mobile Section (Cart + Hamburger) */
   .mobile-section {
     display: none;
     align-items: center;
+    gap: 1rem;
   }
   
+  /* Mobile Dropdown */
   .mobile-dropdown {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 3.5rem;
+    top: 4rem; /* just below navbar */
     right: 0;
-    width: 150px;
+    width: 180px; /* slightly wider */
     background-color: #fffaf3;
     border-radius: 0 0 10px 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 10px 0;
-    list-style: none;
+    padding: 15px 0;
+    list-style: none; /* remove bullets */
     margin: 0;
     z-index: 40;
   }
   
+  /* Dropdown Links */
   .mobile-dropdown li {
-    padding: 10px 0;
+    padding: 12px 20px;
     text-align: center;
   }
   
@@ -35,29 +39,32 @@
     text-decoration: none;
     color: black;
     font-weight: 500;
+    display: block;
   }
   
   .mobile-dropdown li a:hover {
     text-decoration: underline;
+    color: #e76f51;
   }
   
-  /* Mobile */
+  /* Mobile Styles */
   @media (max-width: 767px) {
-    .desktop-menu {
+    /* Hide desktop menu */
+    ul.desktop-menu {
       display: none !important;
     }
   
     .mobile-section {
       display: flex;
-      gap: 1rem;
-      margin-right: 3px;
     }
   
+    /* Make navbar taller on mobile */
     nav {
       height: 4.5rem;
     }
   }
   
+  /* Desktop Styles */
   @media (min-width: 768px) {
     .mobile-dropdown {
       display: none !important;
