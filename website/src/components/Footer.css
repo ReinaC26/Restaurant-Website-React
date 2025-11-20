@@ -1,4 +1,4 @@
-/* Desktop layout - horizontal */
+/* Desktop */
 .footer-content {
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@
     text-align: left;
   }
   
-  /* Mobile layout - vertical stack */
+  /* Mobile */
   @media (max-width: 767px) {
     .footer-content {
       flex-direction: column;

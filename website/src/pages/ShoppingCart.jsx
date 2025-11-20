@@ -11,12 +11,11 @@ function ShoppingCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Navbar scroll effect and active link highlighting
+  // Navbar scroll effect
   useEffect(() => {
     const navbar = document.querySelector(".navbar");
     const links = document.querySelectorAll(".nav-links li a");
 
-    // Highlight active link
     links.forEach((link) => {
       const linkPath = new URL(link.href).pathname;
       if (linkPath === window.location.pathname) link.classList.add("active");

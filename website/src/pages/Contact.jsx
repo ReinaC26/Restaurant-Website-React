@@ -4,7 +4,6 @@ import "./Contact.css";
 
 function Contact() {
   useEffect(() => {
-    // Underline active link
     const links = document.querySelectorAll(".nav-links li a");
     const currentPath = window.location.pathname;
     links.forEach((link) => {

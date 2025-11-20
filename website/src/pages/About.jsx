@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import "./About.css";
 
 function About() {
-    // Underline active link
     const links = document.querySelectorAll('.nav-links li a');
     const currentPath = window.location.pathname;
     links.forEach(link => {

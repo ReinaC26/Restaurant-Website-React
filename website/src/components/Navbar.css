@@ -10,7 +10,7 @@
     align-items: center; 
 }
 
-/* --- MOBILE DROPDOWN --- */
+/* MOBILE DROPDOWN */
 .mobile-dropdown { 
     position: fixed;    
     top: 3.5rem;      
@@ -41,7 +41,7 @@
     opacity: 0.7;
 }
 
-/* --- MOBILE --- */
+/* MOBILE */
 @media (max-width: 767px) { 
     .desktop-menu { 
         display: none !important; 
@@ -63,7 +63,7 @@
     } 
 }
 
-/* --- DESKTOP --- */
+/* DESKTOP */
 @media (min-width: 768px) { 
     .mobile-dropdown { 
         display: none !important; 
