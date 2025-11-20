@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Hero.css';
 
 function Hero() {
@@ -20,12 +21,12 @@ function Hero() {
           Enjoy the delicious moments, any time of day.
         </p>
 
-        <a
+        <Link
           href="/menu"
           className="hero-button inline-block text-[white] no-underline p-[10px] bg-[#f4a261] rounded-[5px] font-bold hover:bg-[#e76f51] hover:scale-105 transition-transform duration-500 block mx-auto"
         >
           View Our Menu
-        </a>
+        </Link>
       </div>
     </section>
   );
