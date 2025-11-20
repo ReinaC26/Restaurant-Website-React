@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./Navbar.css";
 
 function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -32,7 +38,7 @@ function Navbar() {
       </div>
 
       {/* Desktop Links */}
-      <ul className="desktop-menu flex-row gap-[45px] px-[20px] items-center list-none">
+      <ul className="flex flex-row gap-[45px] px-[20px] items-center list-none">
         <li>
           <Link
             to="/"
@@ -84,44 +90,64 @@ function Navbar() {
         </li>
       </ul>
 
-        {/* Mobile: Cart and Hamburger */}
-        <div className="mobile-section md:hidden flex items-center gap-4">
-        <Link to="/shopping-cart" className="block">
-            <img 
-            src={isTransparent ? "/cart1.png" : "/cart2.png"} 
-            alt="Cart" 
-            className="w-[20px] h-[20px] object-contain" 
-            />
-        </Link>
+      {/* Hamburger for Mobile */}
+      {isMobile && (
         <button
-            className={`focus:outline-none ${
+          className={`text-3xl focus:outline-none transition-colors ${
             isTransparent ? "text-white" : "text-black"
-            }`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+          }`}
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-            {menuOpen ? "✕" : "☰"}
+          ☰
         </button>
-        </div>
+      )}
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-        <ul className="mobile-dropdown md:hidden">
-            <li>
-            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-            </li>
-            <li>
-            <Link to="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
-            </li>
-            <li>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-            </li>
-            <li>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-            </li>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <ul className="absolute top-16 right-0 w-48 bg-[#fffaf3] flex flex-col gap-4 p-4 rounded-b-lg shadow-lg text-black">
+          <li>
+            <Link 
+              to="/" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/" ? "underline" : ""}`}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/menu" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/menu" ? "underline" : ""}`}
+            >
+              Menu
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/about" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/about" ? "underline" : ""}`}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/contact" 
+              onClick={() => setMenuOpen(false)}
+              className={`hover:underline ${location.pathname === "/contact" ? "underline" : ""}`}
+            >
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link to="/shopping-cart">
+              <img src="/cart2.png" alt="Cart" className="w-4 h-4" />
+            </Link>
+          </li>
         </ul>
-        )}
-
+      )}
     </nav>
   );
 }
