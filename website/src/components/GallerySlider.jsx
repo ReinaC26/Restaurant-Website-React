@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './GallerySlider.css';
 
 const images = [
-  'french_toast.jpg',
-  'avocado_toast.jpg',
-  'interior.jpg',
-  'interior2.jpg',
-  'shrimp_pasta.jpg',
-  'chicken_waffle.jpg',
-  'food.jpg',
-  'egg_croissant.jpg'
+  '/french_toast.jpg',
+  '/avocado_toast.jpg',
+  '/interior.jpg',
+  '/interior2.jpg',
+  '/shrimp_pasta.jpg',
+  '/chicken_waffle.jpg',
+  '/food.jpg',
+  '/egg_croissant.jpg'
 ];
 
 function GallerySlider() {
