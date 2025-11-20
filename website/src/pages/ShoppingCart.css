@@ -18,21 +18,21 @@
         flex-direction: column !important;
         align-items: center !important;
         padding: 1rem !important;
-        width: 90% !important;
+        width: 85% !important;
         max-width: 330px !important;
     }
   
     .cart-item-image {
         margin-left: 0 !important;
         margin-bottom: 5px !important;
-        height: 50px !important;
-        width: 50px !important;
+        height: 200px !important;
+        width: 280px !important;
     }
   
     .cart-details {
         text-align: left !important;
         margin-left: 0 !important;
-        margin-top: 0.3rem !important;
+        margin-top: 0.2rem !important;
     }
   
     .cart-item-name {
@@ -44,6 +44,7 @@
     }
   
     .remove-btn {
+        text-align: left !important;
         margin-left: auto !important;
         margin-right: auto !important;
         margin-top: 0.75rem !important;
@@ -55,7 +56,7 @@
   
     .cart-total-amount {
         font-size: 1.5rem !important;
-        right: auto !important;
+        text-align: right !important;
     }
   
     .checkout-btn {
@@ -65,5 +66,6 @@
         padding: 1rem !important;
         font-size: 1rem !important;
         margin-left: 18vw !important;
+        margin-left: 5px !important;
     }
 }

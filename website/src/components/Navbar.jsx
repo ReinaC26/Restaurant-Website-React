@@ -94,7 +94,7 @@ function Navbar() {
             />
         </Link>
         <button
-            className={`text-3xl focus:outline-none ${
+            className={`focus:outline-none ${
             isTransparent ? "text-white" : "text-black"
             }`}
             onClick={() => setMenuOpen(!menuOpen)}
