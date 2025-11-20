@@ -97,23 +97,24 @@ function Navbar() {
 
         {/* Mobile Section */}
         {isMobile && (
-          <div className="mobile-section flex items-center gap-4">
+        <div className="mobile-section flex items-center gap-4">
             <Link to="/shopping-cart" className="block z-50">
-              <img
+            <img
                 src={isTransparent ? "/cart1.png" : "/cart2.png"}
                 alt="Cart"
                 className="w-[20px] h-[20px] object-contain"
-              />
+            />
             </Link>
+
             <button
-              className={`text-3xl focus:outline-none z-50 ${
+            className={`text-3xl focus:outline-none z-50 ${
                 isTransparent ? "text-white" : "text-black"
-              }`}
-              onClick={() => setMenuOpen(!menuOpen)}
+            }`}
+            onClick={() => setMenuOpen(!menuOpen)}
             >
-              {menuOpen ? "✕" : "☰"}
+            ☰
             </button>
-          </div>
+        </div>
         )}
       </nav>
 
