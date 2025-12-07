@@ -2,113 +2,67 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./Menu.css";
 
-const menuItems = [
-  {
-    category: "Main",
-    items: [
-      {
-        name: "Pancakes Deluxe",
-        price: 12,
-        image: "/pancakes_deluxe.jpg",
-        description: "Fluffy pancakes served with maple syrup and fresh berries.",
-      },
-      {
-        name: "Shrimp Pasta",
-        price: 16,
-        image: "/shrimp_pasta.jpg",
-        description: "Fresh shrimp sautéed with garlic and herbs, served over linguine.",
-      },
-      {
-        name: "Beef Burger",
-        price: 14,
-        image: "/burger.jpg",
-        description: "Juicy beef patty with cheddar, lettuce, tomato, and house sauce on a brioche bun.",
-      },
-    ],
-  },
-  {
-    category: "Specials",
-    items: [
-      {
-        name: "Breakfast Burrito",
-        price: 11,
-        image: "/breakfast_burrito.jpg",
-        description: "Eggs, cheese, and sausage wrapped in a warm tortilla, served with salsa.",
-      },
-      {
-        name: "French Toast",
-        price: 11,
-        image: "/french_toast.jpg",
-        description: "Thick slices of bread dipped in cinnamon egg batter, served with syrup and berries.",
-      },
-    ],
-  },
-  {
-    category: "Combos",
-    items: [
-      {
-        name: "Pancakes & Coffee Combo",
-        price: 14,
-        image: "/combo1.jpg",
-        description: "Two pancakes with a cup of our house coffee.",
-      },
-      {
-        name: "Omelette & Toast Combo",
-        price: 15,
-        image: "/combo2.jpg",
-        description: "Veggie omelette served with sourdough toast.",
-      },
-    ],
-  },
-  {
-    category: "Sides",
-    items: [
-      {
-        name: "Hash Browns",
-        price: 5,
-        image: "/hash_browns.jpg",
-        description: "Crispy golden potatoes served with ketchup.",
-      },
-      {
-        name: "Fruit Bowl",
-        price: 6,
-        image: "/fruit_bowl.jpg",
-        description: "Seasonal fresh fruits.",
-      },
-    ],
-  },
-  {
-    category: "Drinks",
-    items: [
-      {
-        name: "Latte",
-        price: 4,
-        image: "/latte.jpg",
-        description: "Creamy espresso latte.",
-      },
-      {
-        name: "Fresh Juice",
-        price: 5,
-        image: "/juice.jpg",
-        description: "Orange, apple, or carrot.",
-      },
-    ],
-  },
-];
+// API base URL
+const API_BASE_URL = 'http://localhost:5001/api';
 
 function Menu() {
   const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch menu items from backend
+  useEffect(() => {
+    fetchMenuItems();
+  }, []);
+
+  // Save cart to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  const fetchMenuItems = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_BASE_URL}/menu`);
+      if (!response.ok) throw new Error('Failed to fetch menu items');
+      const items = await response.json();
+      
+      // Group items by category
+      const groupedItems = items.reduce((acc, item) => {
+        const categoryObj = acc.find(cat => cat.category === capitalizeCategory(item.category));
+        if (categoryObj) {
+          categoryObj.items.push(item);
+        } else {
+          acc.push({
+            category: capitalizeCategory(item.category),
+            items: [item]
+          });
+        }
+        return acc;
+      }, []);
+      
+      setMenuItems(groupedItems);
+      setError(null);
+    } catch (err) {
+      setError('Failed to load menu items. Please try again.');
+      console.error('Error fetching menu:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Helper function to capitalize category names
+  const capitalizeCategory = (category) => {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  };
+
   const addToCart = (item) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((i) => i.name === item.name);
+      const existingItem = prevCart.find((i) => i._id === item._id);
       if (existingItem) {
         return prevCart.map((i) =>
-          i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i
+          i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i
         );
       } else {
         return [...prevCart, { ...item, quantity: 1 }];
@@ -116,6 +70,40 @@ function Menu() {
     });
     alert(`${item.name} added to cart!`);
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="menu-main pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="text-3xl text-[#e76f51] animate-pulse">Loading menu...</div>
+          </div>
+        </main>
+      </>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <main className="menu-main pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
+          <div className="flex flex-col items-center justify-center min-h-[60vh]">
+            <div className="text-2xl text-red-600 mb-4">{error}</div>
+            <button 
+              onClick={fetchMenuItems}
+              className="bg-[#e76f51] text-white px-6 py-3 rounded-lg hover:bg-[#d65b40] transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
@@ -134,7 +122,7 @@ function Menu() {
             <div className="menu-grid grid grid-cols-3 gap-[20px] px-[50px] py-[10px] md:px-12">
               {category.items.map((item, index) => (
                 <div
-                  key={index}
+                  key={item._id || index}
                   className="menu-card text-left bg-[white] rounded-[15px] shadow-[0px_8px_20px_rgba(0,0,0,0.2)] p-[20px] py-[30px] relative hover:-translate-y-[3px] hover:shadow-2xl transition-all duration-300"
                 >
                   <img
