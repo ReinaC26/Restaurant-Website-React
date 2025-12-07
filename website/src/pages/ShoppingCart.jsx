@@ -73,8 +73,8 @@ function ShoppingCart() {
 
   // Handle place order (final step)
   const handlePlaceOrder = async () => {
-    if (!customerInfo.name || !customerInfo.email) {
-      alert('Please fill in your name and email.');
+    if (!customerInfo.name || !customerInfo.phone) {
+      alert('Please fill in your name and phone number.');
       return;
     }
 
@@ -188,54 +188,55 @@ function ShoppingCart() {
               {/* Customer Info Form */}
               <div className="bg-white p-6 rounded-xl shadow-lg mb-6 text-left">
                 <h2 className="text-2xl text-[#e76f51] mb-4 text-center">Contact Information</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
                   <div>
                     <label className="block mb-2 font-semibold">Name *</label>
                     <input
                       type="text"
                       value={customerInfo.name}
                       onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
-                      className="w-full p-2 border border-gray-300 rounded"
+                      className="w-full p-[5px] border border-gray-300 rounded-[5px]"
                       placeholder="Your name"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block mb-2 font-semibold">Email *</label>
-                    <input
-                      type="email"
-                      value={customerInfo.email}
-                      onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
-                      className="w-full p-2 border border-gray-300 rounded"
-                      placeholder="your@email.com"
-                      required
-                    />
-                  </div>
                   <div className="md:col-span-2">
-                    <label className="block mb-2 font-semibold">Phone (Optional)</label>
+                    <label className="block mb-2 font-semibold">Phone *</label>
                     <input
                       type="tel"
                       value={customerInfo.phone}
                       onChange={(e) => setCustomerInfo({...customerInfo, phone: e.target.value})}
-                      className="w-full p-2 border border-gray-300 rounded"
-                      placeholder="(555) 123-4567"
+                      className="w-full p-[5px] border border-gray-300 rounded-[5px]"
+                      placeholder="(000) 123-4567"
                     />
                   </div>
+                  <div>
+                    <label className="block mb-2 font-semibold">Email (Optional)</label>
+                    <input
+                      type="email"
+                      value={customerInfo.email}
+                      onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
+                      className="w-full p-[5px] border border-gray-300 rounded-[5px]"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex justify-between items-center gap-4">
+              <div className="flex justify-between mt-[15px] pb-[15px] items-center gap-4">
                 <button
                   onClick={() => setIsCheckout(false)}
-                  className="bg-gray-400 text-white py-3 px-6 rounded-lg hover:bg-gray-500 transition-colors"
+                  className="bg-gray-400 text-[black] p-[12px] text-[15px] rounded-[10px] border-[0.5px] font-bold hover:bg-gray-400 hover:scale-105 transition-all duration-300"
                 >
                   Back to Cart
                 </button>
                 <button 
                   onClick={handlePlaceOrder}
                   disabled={isProcessing}
-                  className={`text-white py-3 px-6 rounded-lg font-bold transition-all duration-300 ${
+                  className={`text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#d65b40] hover:scale-105 transition-all duration-300 ${
                     isProcessing 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-[#e76f51] hover:bg-[#d65b40] hover:scale-105'
@@ -301,7 +302,7 @@ function ShoppingCart() {
                 <h3 className="cart-total-amount text-2xl font-bold text-[black]">Total: ${total.toFixed(2)}</h3>
                 <button 
                   onClick={handleProceedToCheckout}
-                  className="checkout-btn inline-block mr-[15vw] md:mr-0 text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#d65b40] hover:scale-105 transition-all duration-300"
+                  className="checkout-btn inline-block md:mr-0 text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#d65b40] hover:scale-105 transition-all duration-300"
                 >
                   Proceed to Checkout
                 </button>

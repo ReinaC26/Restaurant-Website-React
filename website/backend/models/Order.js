@@ -42,14 +42,14 @@ const orderSchema = new mongoose.Schema({
         name: {
         type: String,
         required: true
-        },
-        email: {
+        },        
+        phone: {
         type: String,
         required: true
         },
-        phone: {
+        email: {
         type: String,
-        default: ''
+         default: ''
         }
     },
     notes: String
