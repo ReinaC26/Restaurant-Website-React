@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const Order = require('../models/Order')
+const Menu = require('../models/Menu')
 
 function generateOrderNumber() {
     return 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 }
 
-// Ge all orders
+// Get all orders
 router.get('/', async (req, res) => {
     try {
       const orders = await Order.find()
-        .populate('items.menuItem')
         .sort({ createdAt: -1 });
       res.json(orders);
     } catch (error) {
