@@ -55,6 +55,7 @@
     .cart-total-amount {
         font-size: 1.5rem !important;
         text-align: right !important;
+        margin-right: 3vw !important;
     }
   
     .checkout-btn {
@@ -63,6 +64,16 @@
         max-width: 300px !important;
         padding: 1rem !important;
         font-size: 1rem !important;
-        margin-left: 18vw !important;
+        margin-bottom: 3vw !important;
+    }
+    .cart-section {
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+    }
+    
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"] {
+        font-size: 16px !important;
     }
 }

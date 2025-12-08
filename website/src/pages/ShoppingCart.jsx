@@ -17,11 +17,74 @@ function ShoppingCart() {
     email: '',
     phone: ''
   });
+  const [notification, setNotification] = useState(null);
 
-  // Sync cart with localStorage
+  // Sync cart with localStorage and check for new items
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      const newCart = JSON.parse(savedCart);
+      
+      // Check if a new item was added by comparing cart sizes
+      if (newCart.length > cart.length) {
+        const newItem = newCart[newCart.length - 1];
+        showNotification(`${newItem.name} added to cart!`);
+      }
+      // Check if quantity increased
+      else if (newCart.length === cart.length) {
+        const changedItem = newCart.find((newItem, idx) => {
+          const oldItem = cart[idx];
+          return oldItem && newItem._id === oldItem._id && newItem.quantity > oldItem.quantity;
+        });
+        if (changedItem) {
+          showNotification(`${changedItem.name} quantity updated!`);
+        }
+      }
+      
+      setCart(newCart);
+    }
+  }, []);
+
+  // Listen for storage changes (when items added from Menu page)
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'cart') {
+        const newCart = JSON.parse(e.newValue || '[]');
+        
+        // Find the newly added or updated item
+        if (newCart.length > cart.length) {
+          const newItem = newCart.find(item => !cart.find(c => c._id === item._id));
+          if (newItem) {
+            showNotification(`${newItem.name} added to cart!`);
+          }
+        } else {
+          const updatedItem = newCart.find((item, idx) => {
+            const oldItem = cart[idx];
+            return oldItem && item._id === oldItem._id && item.quantity > oldItem.quantity;
+          });
+          if (updatedItem) {
+            showNotification(`${updatedItem.name} quantity updated!`);
+          }
+        }
+        
+        setCart(newCart);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [cart]);
+
+  // Save cart to localStorage when updated
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  // Show notification
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(null), 3000);
+  };
 
   // Navbar scroll effect
   useEffect(() => {
@@ -34,8 +97,10 @@ function ShoppingCart() {
     });
 
     const handleScroll = () => {
-      if (window.scrollY > 50) navbar.classList.add("scrolled");
-      else navbar.classList.remove("scrolled");
+      if (navbar) {
+        if (window.scrollY > 50) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -53,11 +118,16 @@ function ShoppingCart() {
 
   // Remove item from cart
   const removeItem = (itemId) => {
+    const removedItem = cart.find(item => item._id === itemId);
     setCart((prevCart) => prevCart.filter((item) => item._id !== itemId));
+    showNotification(`${removedItem.name} removed from cart`);
   };
 
   // Empty cart
-  const emptyCart = () => setCart([]);
+  const emptyCart = () => {
+    setCart([]);
+    showNotification('Cart cleared');
+  };
 
   // Calculate total
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -154,6 +224,15 @@ function ShoppingCart() {
   return (
     <>
       <Navbar />
+      
+      {/* Notification Toast */}
+      {notification && (
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[8px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[320px] border-1 border-white">
+          <span className="text-3xl">✓</span>
+          <span className="font-bold text-lg">{notification}</span>
+        </div>
+      )}
+
       <main className="pt-[8vh] bg-[#fffaf3] font-serif text-center">
         <section className="cart-header">
           <h1 className="cart-title text-[50px] md:text-5xl text-[#e76f51]">
@@ -221,7 +300,6 @@ function ShoppingCart() {
                       required
                     />
                   </div>
-
                 </div>
               </div>
 
@@ -312,6 +390,22 @@ function ShoppingCart() {
         </section>
         )}
       </main>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-slideDown {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 }
