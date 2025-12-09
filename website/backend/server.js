@@ -8,7 +8,7 @@ const app = express();
 // Middleware
 app.use(cors({
     origin: [
-      'https://restaurant-website-frontend-tilq.onrender.com',
+      'https://restaurant-website-frontend-tilq.onrender.com/api',
       'http://localhost:5173'  // for local development
     ],
     credentials: true
