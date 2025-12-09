@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import "./ShoppingCart.css";
 
 // API base URL
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://restaurant-website-backend-tpln.onrender.com';
 
 function ShoppingCart() {
   // Load cart from localStorage
