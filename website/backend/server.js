@@ -6,7 +6,13 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+      'https://restaurant-website-frontend-tilq.onrender.com',
+      'http://localhost:5173'  // for local development
+    ],
+    credentials: true
+  }));
 app.use(express.json());
 
 // Connect to MongoDB
