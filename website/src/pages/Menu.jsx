@@ -5,22 +5,74 @@ import "./Menu.css";
 // API base URL
 const API_BASE_URL = 'https://restaurant-website-backend-tpln.onrender.com/api';
 
+// Generate or get session ID
+const getSessionId = () => {
+  let sessionId = localStorage.getItem('sessionId');
+  if (!sessionId) {
+    sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('sessionId', sessionId);
+  }
+  return sessionId;
+};
+
 function Menu() {
-  const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
+  const [cart, setCart] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [notification, setNotification] = useState(null);
+
+  // Load cart from database on mount
+  useEffect(() => {
+    const loadCart = async () => {
+      const sessionId = getSessionId();
+      try {
+        const response = await fetch(`${API_BASE_URL}/cart/${sessionId}`);
+        const data = await response.json();
+        if (data && data.items) {
+          setCart(data.items);
+          localStorage.setItem('cart', JSON.stringify(data.items));
+        }
+      } catch (error) {
+        console.error('Failed to load cart from database:', error);
+        // Fallback to localStorage
+        const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        setCart(localCart);
+      }
+    };
+    loadCart();
+  }, []);
 
   // Fetch menu items from backend
   useEffect(() => {
     fetchMenuItems();
   }, []);
 
-  // Save cart to localStorage
+  // Sync cart with database whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length >= 0) {
+      const timeoutId = setTimeout(() => {
+        syncCartWithDB(cart);
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }, 100); // Small delay to batch updates
+      
+      return () => clearTimeout(timeoutId);
+    }
   }, [cart]);
+
+  // Sync cart with database
+  const syncCartWithDB = async (cartItems) => {
+    const sessionId = getSessionId();
+    try {
+      await fetch(`${API_BASE_URL}/cart/${sessionId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cartItems })
+      });
+    } catch (error) {
+      console.error('Failed to sync cart with database:', error);
+    }
+  };
 
   const fetchMenuItems = async () => {
     try {
@@ -118,7 +170,7 @@ function Menu() {
       
       {/* Notification Toast */}
       {notification && (
-        <div className="menu-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[2px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[300px] border-1 border-white">
+        <div className="menu-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-8 py-5 rounded-xl shadow-2xl z-50 animate-fadeIn flex items-center gap-4 min-w-[300px] border-4 border-white">
           <span className="text-3xl">✓</span>
           <span className="font-bold text-lg">{notification}</span>
         </div>

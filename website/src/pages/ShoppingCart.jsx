@@ -5,9 +5,18 @@ import "./ShoppingCart.css";
 // API base URL
 const API_BASE_URL = 'https://restaurant-website-backend-tpln.onrender.com/api';
 
+// Generate or get session ID
+const getSessionId = () => {
+  let sessionId = localStorage.getItem('sessionId');
+  if (!sessionId) {
+    sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('sessionId', sessionId);
+  }
+  return sessionId;
+};
+
 function ShoppingCart() {
-  // Load cart from localStorage
-  const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
+  const [cart, setCart] = useState([]);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -19,66 +28,59 @@ function ShoppingCart() {
   });
   const [notification, setNotification] = useState(null);
 
-  // Sync cart with localStorage and check for new items
+  // Load cart from database on mount and when returning to page
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      const newCart = JSON.parse(savedCart);
-      
-      // Check if a new item was added by comparing cart sizes
-      if (newCart.length > cart.length) {
-        const newItem = newCart[newCart.length - 1];
-        showNotification(`${newItem.name} added to cart!`);
-      }
-      // Check if quantity increased
-      else if (newCart.length === cart.length) {
-        const changedItem = newCart.find((newItem, idx) => {
-          const oldItem = cart[idx];
-          return oldItem && newItem._id === oldItem._id && newItem.quantity > oldItem.quantity;
+    const loadCart = async () => {
+      const sessionId = getSessionId();
+      try {
+        const response = await fetch(`${API_BASE_URL}/cart/${sessionId}`, {
+          cache: 'no-cache' // Force fresh data
         });
-        if (changedItem) {
-          showNotification(`${changedItem.name} quantity updated!`);
+        const data = await response.json();
+        if (data && data.items) {
+          setCart(data.items);
+          localStorage.setItem('cart', JSON.stringify(data.items));
         }
-      }
-      
-      setCart(newCart);
-    }
-  }, []);
-
-  // Listen for storage changes (when items added from Menu page)
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === 'cart') {
-        const newCart = JSON.parse(e.newValue || '[]');
-        
-        // Find the newly added or updated item
-        if (newCart.length > cart.length) {
-          const newItem = newCart.find(item => !cart.find(c => c._id === item._id));
-          if (newItem) {
-            showNotification(`${newItem.name} added to cart!`);
-          }
-        } else {
-          const updatedItem = newCart.find((item, idx) => {
-            const oldItem = cart[idx];
-            return oldItem && item._id === oldItem._id && item.quantity > oldItem.quantity;
-          });
-          if (updatedItem) {
-            showNotification(`${updatedItem.name} quantity updated!`);
-          }
-        }
-        
-        setCart(newCart);
+      } catch (error) {
+        console.error('Failed to load cart from database:', error);
+        // Fallback to localStorage
+        const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        setCart(localCart);
       }
     };
+    
+    loadCart();
+    
+    // Also reload when page gains focus
+    window.addEventListener('focus', loadCart);
+    return () => window.removeEventListener('focus', loadCart);
+  }, []);
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, [cart]);
-
-  // Save cart to localStorage when updated
+  // Sync cart with database whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length >= 0) {
+      const timeoutId = setTimeout(() => {
+        syncCartWithDB(cart);
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }, 100); // Small delay to batch updates
+      
+      return () => clearTimeout(timeoutId);
+    }
   }, [cart]);
+
+  // Sync cart with database
+  const syncCartWithDB = async (cartItems) => {
+    const sessionId = getSessionId();
+    try {
+      await fetch(`${API_BASE_URL}/cart/${sessionId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cartItems })
+      });
+    } catch (error) {
+      console.error('Failed to sync cart with database:', error);
+    }
+  };
 
   // Show notification
   const showNotification = (message) => {
@@ -120,13 +122,25 @@ function ShoppingCart() {
   const removeItem = (itemId) => {
     const removedItem = cart.find(item => item._id === itemId);
     setCart((prevCart) => prevCart.filter((item) => item._id !== itemId));
-    showNotification(`${removedItem.name} removed from cart`);
+    if (removedItem) {
+      showNotification(`${removedItem.name} removed from cart`);
+    }
   };
 
   // Empty cart
-  const emptyCart = () => {
+  const emptyCart = async () => {
     setCart([]);
     showNotification('Cart cleared');
+    
+    // Also clear from database
+    const sessionId = getSessionId();
+    try {
+      await fetch(`${API_BASE_URL}/cart/${sessionId}`, {
+        method: 'DELETE'
+      });
+    } catch (error) {
+      console.error('Failed to clear cart from database:', error);
+    }
   };
 
   // Calculate total
@@ -180,7 +194,7 @@ function ShoppingCart() {
       // Clear cart and show success
       setOrderNumber(newOrder.orderNumber);
       setOrderPlaced(true);
-      emptyCart();
+      await emptyCart();
       
     } catch (error) {
       alert('Failed to place order. Please try again.');
@@ -226,7 +240,7 @@ function ShoppingCart() {
       
       {/* Notification Toast */}
       {notification && (
-        <div className="cart-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[8px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[320px] border-1 border-white">
+        <div className="cart-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-8 py-5 rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[320px] border-4 border-white">
           <span className="text-3xl">✓</span>
           <span className="font-bold text-lg">{notification}</span>
         </div>

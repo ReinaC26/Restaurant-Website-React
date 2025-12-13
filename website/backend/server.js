@@ -31,9 +31,11 @@ app.get('/', (req, res) => {
 
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
+const cartRoutes = require('./routes/cart');
 
 app.use('/api/menu', menuRoutes);
 app.use('/api/order', orderRoutes);
+app.use('/api/cart', cartRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
