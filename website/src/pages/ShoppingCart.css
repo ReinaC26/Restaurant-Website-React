@@ -68,12 +68,13 @@
     }
     .cart-section {
         padding-left: 1rem;
-        padding-right: 1.5rem;
+        padding-right: 1rem;
     }
     
       input[type="text"],
       input[type="email"],
       input[type="tel"] {
         font-size: 16px !important;
+        padding-right: 0;
     }
 }
