@@ -10,6 +10,7 @@ function Menu() {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   // Fetch menu items from backend
   useEffect(() => {
@@ -57,6 +58,12 @@ function Menu() {
     return category.charAt(0).toUpperCase() + category.slice(1);
   };
 
+  // Show notification
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(null), 3000);
+  };
+
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((i) => i._id === item._id);
@@ -68,7 +75,7 @@ function Menu() {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
-    alert(`${item.name} added to cart!`);
+    showNotification(`${item.name} added to cart!`);
   };
 
   // Loading state
@@ -108,6 +115,15 @@ function Menu() {
   return (
     <>
       <Navbar />
+      
+      {/* Notification Toast */}
+      {notification && (
+        <div className="menu-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[2px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[300px] border-1 border-white">
+          <span className="text-3xl">✓</span>
+          <span className="font-bold text-lg">{notification}</span>
+        </div>
+      )}
+
       <main className="menu-main pt-[8vh] pb-[12vh] bg-[#fffaf3] font-serif text-center">
         <h1 className="menu-title text-[50px] md:text-[5xl] text-[#e76f51] my-[10px]">
           Our Menu
@@ -155,6 +171,22 @@ function Menu() {
           </section>
         ))}
       </main>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translate(-50%, -20px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 }

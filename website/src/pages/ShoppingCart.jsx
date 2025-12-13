@@ -195,13 +195,12 @@ function ShoppingCart() {
     return (
       <>
         <Navbar />
-        <main className="pt-[8vh] min-h-screen bg-[#fffaf3] font-serif flex items-center justify-center">
-          <div className="text-center bg-white p-10 rounded-xl shadow-lg max-w-md">
-            <div className="text-6xl mb-4">✅</div>
-            <h1 className="text-3xl text-[#e76f51] mb-4">Order Placed Successfully!</h1>
+        <main className="min-h-screen bg-[#fffaf3] font-serif flex items-center justify-center">
+          <div className="text-center rounded-xl shadow-lg max-w-md">
+            <h1 className="text-3xl text-[#e76f51] mb-4">✅ Order Placed Successfully!</h1>
             <p className="text-xl mb-2">Order Number:</p>
             <p className="text-2xl font-bold text-[#3b3b3b] mb-6">{orderNumber}</p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 ml-[10px] mr-[10px]">
               We've received your order and will start preparing it soon. 
               Thank you for choosing Between the Bites!
             </p>
@@ -211,7 +210,7 @@ function ShoppingCart() {
                 setIsCheckout(false);
                 setCustomerInfo({ name: '', email: '', phone: '' });
               }}
-              className="bg-[#e76f51] text-white py-3 px-6 rounded-lg hover:bg-[#d65b40] transition-colors"
+              className="bg-[#e76f51] inline-block md:mr-0 text-[white] p-[12px] text-[15px] bg-[#e76f51] rounded-[10px] border-[0px] font-bold hover:bg-[#d65b40] hover:scale-105 transition-all duration-300"
             >
               Place Another Order
             </button>
@@ -227,7 +226,7 @@ function ShoppingCart() {
       
       {/* Notification Toast */}
       {notification && (
-        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[8px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[320px] border-1 border-white">
+        <div className="cart-notification fixed top-24 left-1/2 transform -translate-x-1/2 bg-[#e76f51] text-[white] px-[8px] py-[5px] rounded-xl shadow-2xl z-50 animate-slideDown flex items-center gap-4 min-w-[320px] border-1 border-white">
           <span className="text-3xl">✓</span>
           <span className="font-bold text-lg">{notification}</span>
         </div>
@@ -326,7 +325,7 @@ function ShoppingCart() {
             </div>
           </section>
         ) : (
-          // Cart Page - Original View
+          // Cart Page
           <section className="cart-section md:px-12">
           {cart.length > 0 && (
             <button
